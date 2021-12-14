@@ -43,14 +43,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   DV_GRV,   DV_1,   DV_2,    DV_3,    DV_4,    DV_5,                     DV_6,    DV_7,    DV_8,    DV_9,    DV_0,  DV_SLSH, \
   KC_ESC,   DV_QUOT,DV_COMM, DV_DOT,  DV_P,    DV_Y,                     DV_F,    DV_G,    DV_C,    DV_R,    DV_L,  KC_BSPC, \
   KC_TAB,   DV_A,   DV_O,    DV_E,    DV_U,    DV_I,                     DV_D,    DV_H,    DV_T,    DV_N,    DV_S,  DV_MINS, \
-  KC_LSFT,  DV_SCLN,DV_Q,    DV_J,    DV_K,    DV_X, KC_MUTE,    XXXXXXX,DV_B,    DV_M, DV_W,  DV_V, DV_Z,  KC_RSFT, \
+  KC_LSFT,  DV_SCLN,DV_Q,    DV_J,    DV_K,    DV_X, KC_MUTE,    XXXXXXX,DV_B,    DV_M,    DV_W,    DV_V,    DV_Z,  KC_RSFT, \
                  KC_LGUI,KC_LALT,KC_LCTRL, KC_LOWER, KC_ENT,      KC_SPC,  KC_RAISE, KC_RCTRL, KC_RALT, KC_RGUI \
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |  F1  |  F2  |  F3  |  F4  |  F5  |                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
+ * |  `   |  F1  |  F2  |  F3  |  F4  |  F5  |                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |  `   |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  | F12  |
+ * |  ?   |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  | F12  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Tab  |   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |   &  |   *  |   (  |   )  |   |  |
  * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
@@ -61,11 +61,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            `----------------------------------'           '------''---------------------------'
  */
 [_LOWER] = LAYOUT( \
-  _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                       KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,\
-  DV_GRV,    DV_1,    DV_2,    DV_3,    DV_4,    DV_5,                       DV_6,    DV_7,    DV_8,    DV_9,    DV_0,  KC_F12, \
-  _______, DV_EXLM,   DV_AT, DV_HASH,  DV_DLR, DV_PERC,                       DV_CIRC, DV_AMPR, DV_ASTR, DV_LPRN, DV_RPRN, DV_PIPE, \
-  _______,  DV_EQL, DV_MINS, DV_PLUS, DV_LCBR, DV_RCBR, _______,       _______, DV_LBRC, DV_RBRC, DV_SCLN, DV_COLN, DV_BSLS, _______, \
-                       _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______\
+  DV_GRV,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                       KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,\
+  DV_QUES,  DV_1,    DV_2,    DV_3,    DV_4,    DV_5,                        DV_6,    DV_7,    DV_8,    DV_9,   DV_0,    KC_F12, \
+  _______,  DV_EXLM, DV_AT,   DV_HASH, DV_DLR,  DV_PERC,                     DV_CIRC, DV_AMPR, DV_ASTR, DV_LPRN,DV_RPRN, DV_PIPE, \
+  _______,  DV_EQL,  DV_MINS, DV_PLUS, DV_LCBR, DV_RCBR, _______,   _______, DV_LBRC, DV_RBRC, DV_SCLN, DV_COLN,DV_BSLS, _______, \
+                       _______, _______, _______, _______, _______,_______, _______, _______, _______, _______\
 ),
 /* RAISE
  * ,----------------------------------------.                    ,-----------------------------------------.
@@ -82,11 +82,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            `----------------------------------'           '------''---------------------------'
  */
 [_RAISE] = LAYOUT( \
-  _______, _______ , _______ , _______ , _______ , _______,                           _______,  _______  , _______,  _______ ,  _______ ,_______, \
-  _______,  KC_INS,  KC_PSCR,   KC_APP,  XXXXXXX, XXXXXXX,                        KC_PGUP, KC_PRVWD,   KC_UP, KC_NXTWD,KC_DLINE, KC_BSPC, \
-  _______, KC_LALT,  KC_LCTL,  KC_LSFT,  XXXXXXX, KC_CAPS,                       KC_PGDN,  KC_LEFT, KC_DOWN, KC_RGHT,  KC_DEL, KC_BSPC, \
-  _______,KC_UNDO, KC_CUT, KC_COPY, KC_PASTE, XXXXXXX,  _______,       _______,  XXXXXXX, KC_LSTRT, XXXXXXX, KC_LEND,   XXXXXXX, _______, \
-                         _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______ \
+  _______, _______ , _______ , _______ , _______, _______,                      _______,  _______, _______,  _______ ,  _______ ,_______, \
+  _______, KC_INS,  KC_PSCR,   KC_APP,  XXXXXXX,  XXXXXXX,                      KC_PGUP, KC_PRVWD, KC_UP,   KC_NXTWD, KC_DLINE, KC_BSPC, \
+  _______, KC_LALT, KC_LCTL,   KC_LSFT, XXXXXXX,  KC_CAPS,                      KC_PGDN, KC_LEFT,  KC_DOWN, KC_RGHT,  KC_DEL,   KC_BSPC, \
+  _______, KC_UNDO, KC_CUT,    KC_COPY, KC_PASTE, XXXXXXX,  _______,  _______,  XXXXXXX, KC_LSTRT, XXXXXXX, KC_LEND,  XXXXXXX,  _______, \
+                         _______, _______, _______, _______, _______,   _______, _______, _______, _______, _______ \
 ),
 /* ADJUST
  * ,-----------------------------------------.                    ,-----------------------------------------.
