@@ -26,13 +26,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * DVORAK
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |  `   |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
+ * |  `   |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  /   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | ESC  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  | Bspc |
+ * | ESC  |   '  |   ,  |   .  |   P  |   Y  |                    |   F  |   G  |   C  |   R  |   L  | Bspc |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Tab  |   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |   ;  |  '   |
- * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |RShift|
+ * | Tab  |   A  |   O  |   E  |   U  |   I  |-------.    ,-------|   D  |   H  |   T  |   N  |   S  |  -   |
+ * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
+ * |LShift|   ;  |   Q  |   J  |   K  |   X  |-------|    |-------|   B  |   M  |   W  |   V  |   Z  |RShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | RCTR | RAlt | RGUI |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_DVORAK] = LAYOUT( \
-  DV_GRV,   DV_1,   DV_2,    DV_3,    DV_4,    DV_5,                     DV_6,    DV_7,    DV_8,    DV_9,    DV_0,  DV_GRV, \
+  DV_GRV,   DV_1,   DV_2,    DV_3,    DV_4,    DV_5,                     DV_6,    DV_7,    DV_8,    DV_9,    DV_0,  DV_SLSH, \
   KC_ESC,   DV_QUOT,DV_COMM, DV_DOT,  DV_P,    DV_Y,                     DV_F,    DV_G,    DV_C,    DV_R,    DV_L,  KC_BSPC, \
   KC_TAB,   DV_A,   DV_O,    DV_E,    DV_U,    DV_I,                     DV_D,    DV_H,    DV_T,    DV_N,    DV_S,  DV_MINS, \
   KC_LSFT,  DV_SCLN,DV_Q,    DV_J,    DV_K,    DV_X, KC_MUTE,    XXXXXXX,DV_B,    DV_M, DV_W,  DV_V, DV_Z,  KC_RSFT, \
