@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 #include <keymap_extras/keymap_dvorak.h>
+#include <stdio.h>
 
 enum sofle_layers {
     /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
@@ -113,6 +114,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #ifdef OLED_ENABLE
 
+#ifdef WPM_ENABLE
+static void print_wpm(void) {
+    static char wpm_str[10];
+    sprintf(wpm_str, "WPM: %03d", get_current_wpm());
+    oled_write_P(PSTR("\n"), false);
+    oled_write(wpm_str, false);
+}
+#else
 static void render_logo(void) {
     static const char PROGMEM qmk_logo[] = {
         0x80,0x81,0x82,0x83,0x84,0x85,0x86,0x87,0x88,0x89,0x8a,0x8b,0x8c,0x8d,0x8e,0x8f,0x90,0x91,0x92,0x93,0x94,
@@ -122,6 +131,7 @@ static void render_logo(void) {
 
     oled_write_P(qmk_logo, false);
 }
+#endif
 
 static void print_status_narrow(void) {
     // Print current mode
@@ -161,22 +171,35 @@ static void print_status_narrow(void) {
             oled_write_ln_P(PSTR("Undef"), false);
     }
     oled_write_P(PSTR("\n\n"), false);
+    //#ifdef WPM_ENABLE
+    //#else
     led_t led_usb_state = host_keyboard_led_state();
     oled_write_ln_P(PSTR("CPSLK"), led_usb_state.caps_lock);
+    //#endif
 }
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     if (is_keyboard_master()) {
         return OLED_ROTATION_270;
     }
+    #ifdef WPM_ENABLE
+    if (!is_keyboard_master()) {
+        return OLED_ROTATION_270;
+    }
+    #endif
     return rotation;
 }
+
 
 bool oled_task_user(void) {
     if (is_keyboard_master()) {
         print_status_narrow();
     } else {
+        #ifdef WPM_ENABLE
+        print_wpm();
+        #else
         render_logo();
+        #endif
     }
     return false;
 }
