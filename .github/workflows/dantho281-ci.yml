@@ -1,6 +1,28 @@
 name: Build firmware as CI
 
-on: [push, pull_request]
+on:
+    push:
+        paths:
+        - quantum/**/*
+        - tmk_core/**/*
+        - drivers/**/*
+        - tests/**
+        - util/**/*
+        - platforms/**/*
+        - '*.mk'
+        - Makefile
+        - keyboards/sofle/**/*
+    pull_request:
+        paths:
+        - quantum/**/*
+        - tmk_core/**/*
+        - drivers/**/*
+        - tests/**
+        - util/**/*
+        - platforms/**/*
+        - '*.mk'
+        - Makefile
+        - keyboards/sofle/**/*
 
 jobs:
   build_firmware:
