@@ -12,6 +12,7 @@ on:
         - '*.mk'
         - Makefile
         - keyboards/sofle/**/*
+        - keyboards/dm9records/plaid/**/*
     pull_request:
         paths:
         - quantum/**/*
@@ -23,6 +24,7 @@ on:
         - '*.mk'
         - Makefile
         - keyboards/sofle/**/*
+        - keyboards/dm9records/plaid/**/*
 
 jobs:
   build_firmware:
@@ -39,9 +41,14 @@ jobs:
         submodules: true
 
     - name: Build firmware
-      run: qmk compile -kb sofle -km dantho281
+      run: qmk compile -kb sofle -km dantho281 && qmk compile -kb dm9records/plaid -km danthe281
 
     - uses: actions/upload-artifact@v2
       with:
         name: firmware-sofle-${{github.sha}}
         path: /__w/qmk_firmware/qmk_firmware/sofle_rev1_dantho281.hex
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: firmware-plaid-${{github.sha}}
+        path: /__w/qmk_firmware/qmk_firmware/dm9records_plaid_dantho281.hex
