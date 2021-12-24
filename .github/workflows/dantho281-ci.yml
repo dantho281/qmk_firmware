@@ -41,7 +41,7 @@ jobs:
         submodules: true
 
     - name: Build firmware
-      run: qmk compile -kb sofle -km dantho281 && qmk compile -kb dm9records/plaid -km danthe281
+      run: qmk compile -kb sofle -km dantho281 && qmk compile -kb dm9records/plaid -km dantho281
 
     - uses: actions/upload-artifact@v2
       with:
