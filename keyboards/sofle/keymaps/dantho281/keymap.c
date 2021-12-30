@@ -7,10 +7,12 @@ enum sofle_layers {
     _LOWER,
     _RAISE,
     _ADJUST,
+    _FPS,
 };
 
 enum custom_keycodes {
     KC_DVORAK = SAFE_RANGE,
+    KC_FPS,
     KC_LOWER,
     KC_RAISE,
     KC_ADJUST,
@@ -92,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | RESET|      |DVORAK|      |      |      |                    |      |      |      |      |      |      |
+ * | RESET|      |DVORAK| FPS  |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |MACWIN|      |      |      |-------.    ,-------|      | VOLDO| MUTE | VOLUP|      |      |
  * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
@@ -104,11 +106,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
   [_ADJUST] = LAYOUT( \
   XXXXXXX , XXXXXXX,  XXXXXXX ,  XXXXXXX , XXXXXXX, XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-  RESET  , XXXXXXX,KC_DVORAK,XXXXXXX,       CG_TOGG,XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+  RESET  , XXXXXXX,KC_DVORAK,KC_FPS,       CG_TOGG,XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
   XXXXXXX , XXXXXXX,CG_TOGG, XXXXXXX,    XXXXXXX,  XXXXXXX,                     XXXXXXX, KC_VOLD, KC_MUTE, KC_VOLU, XXXXXXX, XXXXXXX, \
   XXXXXXX , XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,  XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, XXXXXXX, \
                    _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______ \
-  )
+  ),
+/*
+ * FPS
+ * ,-----------------------------------------.                    ,-----------------------------------------.
+ * |  `   |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  /   |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * | Tab  |   '  |   ,  |   .  |   P  |   Y  |                    |   F  |   G  |   C  |   R  |   L  | Bspc |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * | ESC  |   A  |   O  |   E  |   U  |   I  |-------.    ,-------|   D  |   H  |   T  |   N  |   S  |  -   |
+ * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
+ * |LShift|   ;  |   Q  |   J  |   K  |   X  |-------|    |-------|   B  |   M  |   W  |   V  |   Z  |RShift|
+ * `-----------------------------------------/       /     \      \-----------------------------------------'
+ *            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | RCTR | RAlt | RGUI |
+ *            |      |      |      |      |/       /         \      \ |      |      |      |      |
+ *            `----------------------------------'           '------''---------------------------'
+ */
+
+[_FPS] = LAYOUT( \
+  DV_GRV,   DV_1,   DV_2,    DV_3,    DV_4,    DV_5,                     DV_6,    DV_7,    DV_8,    DV_9,    DV_0,  DV_SLSH, \
+  KC_TAB,   DV_QUOT,DV_COMM, DV_DOT,  DV_P,    DV_Y,                     DV_F,    DV_G,    DV_C,    DV_R,    DV_L,  KC_BSPC, \
+  KC_ESC,   DV_A,   DV_O,    DV_E,    DV_U,    DV_I,                     DV_D,    DV_H,    DV_T,    DV_N,    DV_S,  DV_MINS, \
+  KC_LSFT,  DV_SCLN,DV_Q,    DV_J,    DV_K,    DV_X, KC_MUTE,    XXXXXXX,DV_B,    DV_M,    DV_W,    DV_V,    DV_Z,  KC_RSFT, \
+                 KC_LGUI,KC_LALT,KC_LCTRL, KC_LOWER, KC_SPC,      KC_ENT,  KC_RAISE, KC_RCTRL, KC_RALT, KC_RGUI \
+),
 };
 
 #ifdef OLED_ENABLE
@@ -147,6 +172,9 @@ static void print_status_narrow(void) {
     switch (get_highest_layer(layer_state)) {
         case _DVORAK:
             oled_write_P(PSTR("Base\n"), false);
+            break;
+        case _FPS:
+            oled_write_P(PSTR("FPS"), false);
             break;
         case _RAISE:
             oled_write_P(PSTR("Raise"), false);
@@ -188,6 +216,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KC_DVORAK:
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_DVORAK);
+            }
+            return false;
+        case KC_FPS:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_FPS);
             }
             return false;
         case KC_LOWER:
