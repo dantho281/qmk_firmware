@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "trailmix.h"
+#include <keymap_extras/keymap_dvorak.h>
 
 enum layers {
   _BASE,
@@ -67,7 +68,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return true;
 }
 
-void encoder_update_user(uint8_t index, bool clockwise) {
+bool encoder_update_user(uint8_t index, bool clockwise) {
 
 
 	switch (get_highest_layer(layer_state)) {
@@ -136,4 +137,5 @@ void encoder_update_user(uint8_t index, bool clockwise) {
     }
             break;
     }
+    return true;
 }
