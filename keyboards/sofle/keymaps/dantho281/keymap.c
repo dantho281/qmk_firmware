@@ -1,10 +1,5 @@
 #include QMK_KEYBOARD_H
 #include <keymap_extras/keymap_dvorak.h>
-#ifdef OLED_ENABLE
-#include <stdio.h>
-
-char wpm_str[8];
-#endif
 
 enum sofle_layers {
     /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
