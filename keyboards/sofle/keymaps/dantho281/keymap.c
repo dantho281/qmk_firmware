@@ -112,6 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 #ifdef OLED_ENABLE
+uint32_t oled_timer = 0;
 
 static void print_status_narrow(void) {
     // Print current mode
@@ -155,12 +156,12 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 /* Animation bit by j-inc https://github.com/qmk/qmk_firmware/tree/master/keyboards/kyria/keymaps/j-inc */
 // WPM-responsive animation stuff here
 #define IDLE_FRAMES 5
-#define IDLE_SPEED 40 // below this wpm value your animation will idle
+#define IDLE_SPEED 20 // below this wpm value your animation will idle
 
 // #define PREP_FRAMES 1 // uncomment if >1
 
 #define TAP_FRAMES 2
-#define TAP_SPEED 60 // above this wpm value typing animation to triggere
+#define TAP_SPEED 40 // above this wpm value typing animation to triggere
 
 #define ANIM_FRAME_DURATION 200 // how long each frame lasts in ms
 // #define SLEEP_TIMER 60000 // should sleep after this period of 0 wpm, needs fixing
@@ -289,10 +290,13 @@ bool oled_task_user(void) {
     if (is_keyboard_master()) {
         print_status_narrow();
     } else {
+        oled_set_cursor(0,1);
         render_anim();
-        oled_set_cursor(0,12);
-        sprintf(wpm_str, "WPM\n%03d", get_current_wpm());
-        oled_write(wpm_str, false);
+        oled_set_cursor(0,13);
+        oled_write_P(PSTR("WPM: "), false);
+        oled_write(get_u8_str(get_current_wpm(), ' '), false);
+//        sprintf(wpm_str, "WPM\n%03d", get_current_wpm());
+//        oled_write(wpm_str, false);
     }
     return false;
 }
