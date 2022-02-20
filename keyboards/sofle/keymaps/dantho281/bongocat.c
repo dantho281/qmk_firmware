@@ -36,6 +36,8 @@ static void print_status_narrow(void) {
     oled_write_ln_P(PSTR("CPSLK"), led_usb_state.caps_lock);
     if (swap_space_enter) {
         oled_write_ln_P(PSTR("Game"), false);
+    } else {
+        oled_write_ln_P(PSTR("\n"), false);
     }
 }
 
