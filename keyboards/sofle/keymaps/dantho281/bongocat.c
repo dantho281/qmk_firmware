@@ -11,18 +11,30 @@ static void print_status_narrow(void) {
     } else {
         oled_write_ln_P(PSTR("WIN"), false);
     }
-
-    oled_write_ln_P(PSTR("Dvrk\n\n"), false);
+    switch (get_highest_layer(default_layer_state)) {
+        case _DVORAK:
+            oled_write_ln_P(PSTR("Dvrk\n\n"), false);
+            break;
+        case _QWERTY:
+            oled_write_ln_P(PSTR("Qwrty\n\n"), false);
+            break;
+    }
     // Print current layer
     oled_write_ln_P(PSTR("LAYER"), false);
     switch (get_highest_layer(layer_state)) {
         case _DVORAK:
             oled_write_P(PSTR("Base\n"), false);
             break;
+        case _QWERTY:
+            oled_write_P(PSTR("Base\n"), false);
+            break;
         case _RAISE:
             oled_write_P(PSTR("Raise"), false);
             break;
-        case _LOWER:
+        case _DLOWER:
+            oled_write_P(PSTR("Lower"), false);
+            break;
+        case _QLOWER:
             oled_write_P(PSTR("Lower"), false);
             break;
         case _ADJUST:
