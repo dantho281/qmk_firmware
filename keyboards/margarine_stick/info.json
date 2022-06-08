@@ -2,7 +2,7 @@
     "manufacturer": "Daniel Thorpe",
     "keyboard_name": "margarine_stick",
     "maintainer": "dantho281",
-    "bootloader": "atmel-dfu",
+    "bootloader": "caterina",
     "diode_direction": "COL2ROW",
     "features": {
         "bootmagic": true,
