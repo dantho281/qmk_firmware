@@ -48,6 +48,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define RGBLIGHT_HUE_STEP 10
     #define RGBLIGHT_SAT_STEP 17
     #define RGBLIGHT_VAL_STEP 17
+    #define RGBLIGHT_DEFAULT_HUE 193
+    #define RGBLIGHT_DEFAULT_SAT 255
+    #define RGBLIGHT_DEFAULT_VAL 180
+    #define RGBLIGHT_LAYERS
 #endif
 
 #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
